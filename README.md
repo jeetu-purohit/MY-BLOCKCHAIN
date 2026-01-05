@@ -1,98 +1,66 @@
 # MyBlockchain
 
-A blockchain implementation project built during bootcamp to understand the fundamentals of distributed ledger technology.
-
-## Overview
-
-This project demonstrates the core concepts of blockchain technology, including:
-- Block creation and validation
-- Chain integrity and cryptographic hashing
-- Proof of Work mechanisms
-- Consensus algorithms
+A blockchain i made to visualize how a blockchain work in js.
 
 ## Features
 
-- **Block Management**: Create and manage blocks in the chain
-- **Cryptographic Hashing**: Uses SHA-256 for secure block identification
-- **Chain Validation**: Validates the integrity of the entire blockchain
-- **Transaction Support**: Records transactions in blocks
+- **Transactions**: Sign and verify transactions using elliptic curve cryptography (secp256k1)
+- **Digital Signatures**: Each transaction is signed with a private key and verified with a public key
+- **Proof of Work**: Mines blocks with configurable difficulty
+- **Chain Validation**: Verifies blockchain integrity and transaction validity
+- **Balance Tracking**: Calculates wallet balances from the transaction history
 
-## Getting Started
+## How It Works
 
-### Prerequisites
+1. Create transactions with a sender, receiver, and amount
+2. Sign transactions with your private key
+3. Mine blocks containing pending transactions
+4. Receive mining rewards (10 coins per block)
+5. Validate the entire chain to ensure it hasn't been tampered with
 
-- Node.js (v12 or higher)
-- npm or yarn
+## Usage
 
-### Installation
+### Generate Keys
 
-1. Clone the repository
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+node keyGen.js
+```
 
-### Running the Project
-
-To run the blockchain implementation:
+### Run the Demo
 
 ```bash
 node main.js
 ```
 
-## Project Structure
+## Project Files
 
-```
-myblockchain/
-├── main.js          # Main blockchain implementation
-├── README.md        # Project documentation
-└── package.json     # Project dependencies (optional)
-```
+- **blockchain.js** - Core classes: `Transaction`, `Block`, and `Blockchain`
+- **keyGen.js** - Generate public/private key pairs
+- **main.js** - Demo implementation with examples
 
-## How It Works
-
-The blockchain works by:
-
-1. **Creating Blocks**: Each block contains transaction data, a timestamp, and a hash
-2. **Linking Blocks**: Each block references the previous block's hash, creating an immutable chain
-3. **Validation**: The chain can be validated by recalculating hashes and comparing them
-4. **Security**: Any attempt to modify past blocks would break the chain's integrity
-
-## Example Usage
+## Example
 
 ```javascript
-// Refer to main.js for implementation details
+import { Blockchain, Transaction } from "./blockchain.js";
+
+const blockchain = new Blockchain();
+
+// Create and sign a transaction
+const tx = new Transaction(senderAddress, receiverAddress, 100);
+tx.signTransaction(senderPrivateKey);
+
+// Add to blockchain
+blockchain.addTransaction(tx);
+blockchain.mineTransaction(minerAddress);
+
+// Check balance
+console.log(blockchain.calculateBalance(minerAddress));
 ```
 
-## Learning Outcomes
+## Tech Stack
 
-This project helps understand:
-- How blocks are created and hashed
-- The importance of immutability in blockchain
-- How the chain validates itself
-- Basic cryptographic principles
+- **Node.js** with ES Modules
+- **crypto-js** for SHA-256 hashing
+- **elliptic** for elliptic curve cryptography
 
-## Future Enhancements
-
-- Implement Proof of Work
-- Add transaction signing and verification
-- Implement a simple consensus mechanism
-- Add a peer-to-peer network
-- Create a REST API interface
-
-## Resources
-
-- [Bitcoin Whitepaper](https://bitcoin.org/bitcoin.pdf)
-- [Blockchain Fundamentals](https://www.investopedia.com/terms/b/blockchain.asp)
-
-## Author
-
-Created as part of bootcamp training
-
-## License
-
-MIT License
-
----
-
-**Note**: This is an educational project designed to demonstrate blockchain concepts. It should not be used for production purposes.
+This is an educational project. Not for production use.
