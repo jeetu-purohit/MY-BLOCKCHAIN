@@ -14,10 +14,10 @@ export class Transaction{
 
     calculateHash(){
         return cryptoJS.SHA256(
-        this.fromAddress +
-        this.toAddress +
-        this.amount
-    ).toString();
+            this.fromAddress +
+            this.toAddress +
+            this.amount
+        ).toString();
     }
 
     signTransaction(signingKey){ 
