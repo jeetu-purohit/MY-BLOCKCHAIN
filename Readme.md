@@ -3,7 +3,10 @@
 A blockchain i made to visualize how a blockchain work in js.
 This is a very naive way of writing a blockchain but this is all in know for now and the code has a lot of bugs but i don't care i know how the logic works , it serves it purpose 
 
-[project image](image.png)
+<h3>📸 Project Screenshot</h3>
+
+<img src="./image.png" alt="Blockchain UI Screenshot" width="800" />
+
 ## Features!
 
 - **Transactions**: Sign and verify transactions using elliptic curve cryptography (secp256k1)
