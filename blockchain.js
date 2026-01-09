@@ -14,10 +14,9 @@ export class Transaction{
 
     calculateHash(){
         return cryptoJS.SHA256(
-        this.previousHash +
-        this.timestamp +
-        JSON.stringify(this.transaction) +
-        this.nonce
+        this.fromAddress +
+        this.toAddress +
+        this.amount
     ).toString();
     }
 
@@ -51,7 +50,7 @@ class Block{
     }
 
     generateHash(){
-        return cryptoJS.SHA256(this.previousHash + this.timestamp + JSON.stringify(this.data) + this.nonce).toString(cryptoJS.enc.Base64);
+        return cryptoJS.SHA256(this.previousHash + this.timestamp + JSON.stringify(this.transaction) + this.nonce).toString(cryptoJS.enc.Base64);
 
     }
 
@@ -85,7 +84,7 @@ export class Blockchain{
     }
 
     createGenesisBlock(){
-        return new Block("1/1/2026", "genisis block" , "0")
+        return new Block(Date.now(), [] , "0")
     }
 
     getLatestBlock(){
@@ -95,7 +94,6 @@ export class Blockchain{
     mineTransaction(miningRewardAddress){
         let block = new Block(Date.now(),this.pendingTransaction , this.getLatestBlock().hash)//we can also create a funtion to add only the pending transaction that are profitable to the miner the most
         block.mine(this.difficulty);
-        console.log("block mined sucessfully");
         this.chain.push(block);
 
         this.pendingTransaction = [
