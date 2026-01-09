@@ -3,7 +3,8 @@
 A blockchain i made to visualize how a blockchain work in js.
 This is a very naive way of writing a blockchain but this is all in know for now and the code has a lot of bugs but i don't care i know how the logic works , it serves it purpose 
 
-## Features
+[project image](image.png)
+## Features!
 
 - **Transactions**: Sign and verify transactions using elliptic curve cryptography (secp256k1)
 - **Digital Signatures**: Each transaction is signed with a private key and verified with a public key
